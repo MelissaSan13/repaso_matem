@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog de repaso de matemáticas para estudiantes de grados octavo y noveno.">
+  <title>Repasemos Matemáticas | Grados 8.º y 9.º</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --navy:#142b4a; --blue:#245b91; --sky:#eaf3fb; --gold:#e3ad42;
+      --ink:#243247; --muted:#617087; --paper:#ffffff; --bg:#f3f6fa;
+      --line:#dce4ed; --green:#237a57; --shadow:0 10px 30px rgba(20,43,74,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.7}
+    a{color:var(--blue)}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(20,43,74,.97);color:white;box-shadow:0 3px 14px #10233c22}
+    .navwrap{max-width:1180px;margin:auto;padding:0 22px;min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{font-weight:850;letter-spacing:.2px;color:white;text-decoration:none;font-size:1.05rem}
+    .brand span{color:var(--gold)}
+    .navlinks{display:flex;gap:16px;align-items:center}
+    .navlinks a{color:#eaf1fa;text-decoration:none;font-size:.9rem;font-weight:650}
+    .navlinks a:hover{color:var(--gold)}
+    .menu-btn{display:none;border:1px solid #ffffff55;background:transparent;color:white;border-radius:9px;padding:7px 11px;font-size:1.1rem}
+    .hero{background:linear-gradient(125deg,#142b4a 0%,#245b91 68%,#3478a9 100%);color:white;padding:76px 22px 68px;position:relative;overflow:hidden}
+    .hero:after{content:"∑  π  √  x²";position:absolute;right:4%;bottom:-20px;font-size:clamp(3rem,9vw,7rem);font-weight:900;color:#ffffff0d;letter-spacing:10px;white-space:nowrap}
+    .hero-inner{max-width:1100px;margin:auto;position:relative;z-index:1}
+    .eyebrow{color:#f5cf7e;font-size:.8rem;text-transform:uppercase;letter-spacing:2px;font-weight:800}
+    h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.08;margin:12px 0 18px;max-width:780px}
+    .hero p{max-width:690px;color:#e2ebf5;font-size:1.08rem;margin:0 0 25px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-block;text-decoration:none;border-radius:10px;padding:11px 17px;font-weight:800;border:1px solid transparent}
+    .btn-gold{background:var(--gold);color:#172b45}
+    .btn-outline{border-color:#ffffff88;color:white}
+    .container{max-width:1100px;margin:36px auto;padding:0 22px}
+    .intro-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-top:-28px;position:relative;z-index:2}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:23px;box-shadow:var(--shadow)}
+    .card h2,.card h3{margin-top:0;color:var(--navy)}
+    .quickfacts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .fact{background:var(--sky);padding:14px;border-radius:12px}
+    .fact strong{display:block;font-size:1.35rem;color:var(--blue)}
+    .section-heading{margin:48px 0 18px}
+    .section-heading .eyebrow{color:var(--blue)}
+    .section-heading h2{margin:5px 0;color:var(--navy);font-size:clamp(1.7rem,3vw,2.35rem)}
+    .section-heading p{margin:0;color:var(--muted)}
+    .topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .topic-link{display:block;background:white;border:1px solid var(--line);border-radius:13px;padding:17px;text-decoration:none;color:var(--ink);transition:.18s}
+    .topic-link:hover{transform:translateY(-3px);border-color:#8bb2d6;box-shadow:var(--shadow)}
+    .topic-number{display:inline-grid;place-items:center;background:var(--sky);color:var(--blue);font-weight:900;border-radius:9px;width:34px;height:34px;margin-bottom:9px}
+    .topic-link strong{display:block;color:var(--navy);line-height:1.3}
+    .topic-link small{color:var(--muted)}
+    .lesson{scroll-margin-top:85px;margin:22px 0;background:white;border:1px solid var(--line);border-radius:17px;padding:clamp(19px,3vw,30px);box-shadow:var(--shadow)}
+    .lesson h2{color:var(--navy);margin:0 0 12px;font-size:1.65rem}
+    .lesson h3{color:var(--blue);margin:25px 0 8px;font-size:1.12rem}
+    .lesson p{margin:10px 0}
+    .lesson ul,.lesson ol{padding-left:24px}
+    .formula{background:#f1f6fb;border-left:4px solid var(--gold);padding:13px 17px;border-radius:8px;margin:14px 0;overflow-x:auto}
+    .example{background:#fbfcfe;border:1px solid var(--line);border-radius:12px;padding:17px;margin:14px 0}
+    .example-title{font-weight:850;color:var(--green);margin-bottom:8px}
+    .answer{color:var(--green);font-weight:850}
+    .table-wrap{overflow-x:auto;margin:14px 0}
+    table{width:100%;border-collapse:collapse;min-width:300px}
+    th,td{border:1px solid var(--line);padding:10px 12px;text-align:left}
+    th{background:var(--sky);color:var(--navy)}
+    .note{background:#fff8e9;border:1px solid #f0dba9;padding:13px 16px;border-radius:10px;margin:15px 0}
+    .practice{background:linear-gradient(135deg,#142b4a,#245b91);color:white;border-radius:18px;padding:clamp(20px,4vw,34px);margin-top:28px}
+    .practice h2{margin-top:0;color:white}
+    .practice .exercise{background:#ffffff12;border:1px solid #ffffff2c;padding:18px;border-radius:12px;margin:14px 0}
+    .practice .exercise h3{color:#f5cf7e;margin:0 0 8px}
+    .practice p,.practice li{color:#eef4fb}
+    .practice .mathline{overflow-x:auto}
+    .checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .checklist label{background:white;border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;gap:9px;align-items:flex-start}
+    .checklist input{margin-top:6px;accent-color:var(--blue)}
+    footer{margin-top:55px;background:#10233c;color:#dce7f3;padding:28px 22px;text-align:center}
+    footer strong{color:#f5cf7e}
+    .backtop{display:inline-block;margin-top:12px;color:#f5cf7e;text-decoration:none}
+    @media(max-width:850px){.topic-grid{grid-template-columns:repeat(2,1fr)}.intro-grid{grid-template-columns:1fr}}
+    @media(max-width:650px){
+      .navwrap{min-height:60px}.menu-btn{display:block}
+      .navlinks{display:none;position:absolute;top:60px;left:0;right:0;background:var(--navy);padding:15px 22px 20px;flex-direction:column;align-items:flex-start}
+      .navlinks.open{display:flex}.hero{padding:58px 20px 55px}
+      .container{padding:0 15px;margin:26px auto}.topic-grid{gap:9px}
+      .topic-link{padding:13px}.checklist{grid-template-columns:1fr}
+    }
+    @media print{
+      .topbar,.hero-actions,.backtop{display:none!important}
+      body{background:white}.lesson,.card{box-shadow:none;break-inside:avoid}
+      .hero{background:white;color:#142b4a;padding:20px}.hero p{color:#243247}
+      .practice{background:white;color:#142b4a;border:1px solid #aaa}
+      .practice h2,.practice h3,.practice p,.practice li{color:#142b4a}
+    }
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="navwrap">
+    <a class="brand" href="#inicio">AULA <span>MATEMÁTICA</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="navlinks" id="navlinks">
+      <a href="#temas">Temas</a><a href="#factorizacion">Factorización</a><a href="#funciones">Funciones</a>
+      <a href="#poligonos">Polígonos</a><a href="#practica">Practicar</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="eyebrow">Guía de estudio · Evaluación final</div>
+    <h1>Repasemos Matemáticas</h1>
+    <p>Un espacio para recordar, comprender y practicar los principales contenidos trabajados durante el año en los grados octavo y noveno.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#temas">Comenzar a repasar ↓</a>
+      <a class="btn btn-outline" href="#practica">Ir a los ejercicios</a>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+  <div class="intro-grid">
+    <section class="card">
+      <h2>¡Bienvenidos!</h2>
+      <p>Esta guía está organizada por temas. En cada sección encontrarás explicaciones, fórmulas importantes y ejemplos resueltos paso a paso.</p>
+      <p><strong>Propósito:</strong> fortalecer la comprensión de los conceptos matemáticos, reconocer qué procedimiento utilizar y desarrollar seguridad al resolver problemas.</p>
+    </section>
+    <section class="card">
+      <h3>Tu ruta de repaso</h3>
+      <div class="quickfacts">
+        <div class="fact"><strong>8</strong><span>Temas de estudio</span></div>
+        <div class="fact"><strong>5</strong><span>Ejercicios finales</span></div>
+        <div class="fact"><strong>2</strong><span>Grados</span></div>
+        <div class="fact"><strong>1</strong><span>Meta: aprender</span></div>
+      </div>
+    </section>
+  </div>
+
+  <section id="temas">
+    <div class="section-heading"><div class="eyebrow">Contenido</div><h2>Explora los temas</h2><p>Selecciona un tema para ir directamente a su explicación.</p></div>
+    <div class="topic-grid">
+      <a class="topic-link" href="#factorizacion"><span class="topic-number">1</span><strong>Casos de factorización</strong><small>Expresiones algebraicas</small></a>
+      <a class="topic-link" href="#sistemas"><span class="topic-number">2</span><strong>Sistemas de ecuaciones</strong><small>Métodos de solución</small></a>
+      <a class="topic-link" href="#complejos"><span class="topic-number">3</span><strong>Números complejos</strong><small>Parte real e imaginaria</small></a>
+      <a class="topic-link" href="#lineal"><span class="topic-number">4</span><strong>Función lineal</strong><small>Pendiente y recta</small></a>
+      <a class="topic-link" href="#cuadratica"><span class="topic-number">5</span><strong>Función cuadrática</strong><small>Parábola y raíces</small></a>
+      <a class="topic-link" href="#exponencial"><span class="topic-number">6</span><strong>Función exponencial</strong><small>Potencias y crecimiento</small></a>
+      <a class="topic-link" href="#logaritmica"><span class="topic-number">7</span><strong>Función logarítmica</strong><small>Logaritmos</small></a>
+      <a class="topic-link" href="#poligonos"><span class="topic-number">8</span><strong>Polígonos</strong><small>Geometría plana</small></a>
+    </div>
+  </section>
+
+  <div class="section-heading"><div class="eyebrow">Aprende y comprende</div><h2>Lecciones y ejemplos resueltos</h2><p>Lee cada explicación y sigue los pasos de los ejemplos.</p></div>
+
+  <section class="lesson" id="factorizacion">
+    <h2>1. Casos de factorización</h2>
+    <p>La factorización consiste en expresar un polinomio como el producto de dos o más factores. Es el proceso inverso a desarrollar una multiplicación algebraica.</p>
+    <h3>Principales casos</h3>
+    <div class="table-wrap"><table><thead><tr><th>Caso</th><th>Forma o característica</th></tr></thead><tbody>
+      <tr><td>Factor común</td><td>\(ab+ac=a(b+c)\)</td></tr>
+      <tr><td>Factor común por agrupación</td><td>Agrupar términos para extraer factores comunes.</td></tr>
+      <tr><td>Diferencia de cuadrados</td><td>\(a^2-b^2=(a-b)(a+b)\)</td></tr>
+      <tr><td>Trinomio cuadrado perfecto</td><td>\(a^2\pm2ab+b^2=(a\pm b)^2\)</td></tr>
+      <tr><td>Trinomio \(x^2+bx+c\)</td><td>Buscar dos números cuya suma sea \(b\) y cuyo producto sea \(c\).</td></tr>
+      <tr><td>Trinomio \(ax^2+bx+c\)</td><td>Trinomio con coeficiente principal diferente de 1.</td></tr>
+      <tr><td>Suma de cubos</td><td>\(a^3+b^3=(a+b)(a^2-ab+b^2)\)</td></tr>
+      <tr><td>Diferencia de cubos</td><td>\(a^3-b^3=(a-b)(a^2+ab+b^2)\)</td></tr>
+    </tbody></table></div>
+    <div class="example"><div class="example-title">Ejemplo resuelto: diferencia de cuadrados</div>
+      <p>Factorizar \(x^2-25\).</p>
+      <p><strong>Paso 1.</strong> Identificamos dos cuadrados perfectos:</p>
+      \[x^2=(x)^2 \qquad 25=5^2\]
+      <p><strong>Paso 2.</strong> Aplicamos la fórmula:</p>
+      \[a^2-b^2=(a-b)(a+b)\]
+      <p><strong>Paso 3.</strong> Reemplazamos:</p>
+      <div class="formula">\[\boxed{x^2-25=(x-5)(x+5)}\]</div>
+      <p class="answer">Comprobación: al multiplicar los factores se obtiene \(x^2-25\).</p>
+    </div>
+  </section>
+
+  <section class="lesson" id="sistemas">
+    <h2>2. Sistemas de ecuaciones lineales</h2>
+    <p>Un sistema de ecuaciones lineales está formado por dos o más ecuaciones que tienen incógnitas comunes. Resolverlo significa encontrar los valores que satisfacen simultáneamente todas las ecuaciones.</p>
+    <h3>Métodos de solución</h3>
+    <ul><li>Sustitución.</li><li>Igualación.</li><li>Reducción o eliminación.</li><li>Método gráfico.</li></ul>
+    <div class="example"><div class="example-title">Ejemplo resuelto: método de reducción</div>
+      <p>Resolver el sistema:</p>
+      \[\begin{cases}x+y=10\\x-y=2\end{cases}\]
+      <p><strong>Paso 1.</strong> Sumamos las dos ecuaciones:</p>
+      \[(x+y)+(x-y)=10+2\]
+      <p><strong>Paso 2.</strong> Eliminamos \(y\):</p>
+      \[2x=12 \quad\Rightarrow\quad x=6\]
+      <p><strong>Paso 3.</strong> Sustituimos en la primera ecuación:</p>
+      \[6+y=10 \quad\Rightarrow\quad y=4\]
+      <div class="formula"><span class="answer">Solución:</span> \(\boxed{x=6,\quad y=4}\)</div>
+      <p><strong>Comprobación:</strong> \(6+4=10\) y \(6-4=2\). La solución satisface ambas ecuaciones.</p>
+    </div>
+  </section>
+
+  <section class="lesson" id="complejos">
+    <h2>3. Números complejos</h2>
+    <p>Los números complejos tienen una parte real y una parte imaginaria. Se representan mediante:</p>
+    <div class="formula">\[z=a+bi\]</div>
+    <ul><li>\(a\): parte real.</li><li>\(b\): coeficiente de la parte imaginaria.</li><li>\(i\): unidad imaginaria, definida por \(i^2=-1\).</li></ul>
+    <h3>Potencias de la unidad imaginaria</h3>
+    \[\begin{aligned}i^1&=i\\i^2&=-1\\i^3&=-i\\i^4&=1\end{aligned}\]
+    <p>Este ciclo se repite cada cuatro potencias.</p>
+    <h3>Operaciones</h3>
+    <ul><li><strong>Suma:</strong> se suman las partes reales y las imaginarias.</li><li><strong>Resta:</strong> se restan las partes correspondientes.</li><li><strong>Multiplicación:</strong> se aplica la propiedad distributiva y se utiliza \(i^2=-1\).</li></ul>
+    <div class="example"><div class="example-title">Ejemplo resuelto: suma y multiplicación</div>
+      <p>Sean \(z_1=3+2i\) y \(z_2=1+4i\).</p>
+      <p><strong>Primera operación: suma</strong></p>
+      \[\begin{aligned}z_1+z_2&=(3+2i)+(1+4i)\\&=(3+1)+(2i+4i)\\&=\boxed{4+6i}\end{aligned}\]
+      <p><strong>Segunda operación: multiplicación</strong></p>
+      \[\begin{aligned}(3+2i)(1+4i)&=3+12i+2i+8i^2\\&=3+14i-8\\&=\boxed{-5+14i}\end{aligned}\]
+    </div>
+  </section>
+
+  <section class="lesson" id="funciones">
+    <h2>4. Funciones</h2>
+    <p>Una función relaciona cada valor de entrada con un único valor de salida. En esta guía repasaremos tres tipos: lineal, cuadrática y exponencial, además de la función logarítmica.</p>
+  </section>
+
+  <section class="lesson" id="lineal">
+    <h2>4.1. Función lineal</h2>
+    <p>Una función de primer grado se expresa habitualmente como:</p>
+    <div class="formula">\[\boxed{f(x)=mx+b}\]</div>
+    <ul><li>\(m\): pendiente de la recta.</li><li>\(b\): punto donde la recta corta el eje \(y\).</li><li>\(x\): variable independiente.</li><li>\(f(x)\): variable dependiente.</li></ul>
+    <h3>Características principales</h3>
+    <ul><li>Su gráfica es una línea recta.</li><li>Si \(m>0\), la función es creciente.</li><li>Si \(m<0\), la función es decreciente.</li><li>Si \(m=0\), es constante.</li><li>La pendiente representa la razón de cambio entre las variables.</li></ul>
+    <div class="example"><div class="example-title">Ejemplo resuelto</div>
+      <p>Dada la función \(f(x)=2x+3\), encontrar los valores cuando \(x=-1,0,1,2\).</p>
+      \[\begin{aligned}f(-1)&=2(-1)+3=1\\f(0)&=2(0)+3=3\\f(1)&=2(1)+3=5\\f(2)&=2(2)+3=7\end{aligned}\]
+      <div class="table-wrap"><table><thead><tr><th>\(x\)</th><th>\(f(x)\)</th></tr></thead><tbody><tr><td>-1</td><td>1</td></tr><tr><td>0</td><td>3</td></tr><tr><td>1</td><td>5</td></tr><tr><td>2</td><td>7</td></tr></tbody></table></div>
+      <p>Los puntos obtenidos son \((-1,1),(0,3),(1,5),(2,7)\).</p>
+      <p class="answer">Conclusión: la pendiente es \(m=2\), por lo tanto, la función es creciente. Corta el eje \(y\) en 3.</p>
+    </div>
+  </section>
+
+  <section class="lesson" id="cuadratica">
+    <h2>5. Función cuadrática</h2>
+    <p>Una función cuadrática es aquella cuya expresión algebraica tiene como mayor exponente el número 2.</p>
+    <div class="formula">\[\boxed{f(x)=ax^2+bx+c}\]</div>
+    <ul><li>\(a\): determina la orientación y apertura de la parábola.</li><li>\(b\): interviene en la ubicación del vértice.</li><li>\(c\): indica el punto de corte con el eje \(y\).</li></ul>
+    <h3>Características principales</h3>
+    <ul><li>Su gráfica es una parábola.</li><li>Si \(a>0\), abre hacia arriba.</li><li>Si \(a<0\), abre hacia abajo.</li><li>Tiene un vértice que representa un máximo o mínimo.</li><li>Puede tener dos, una o ninguna raíz real.</li></ul>
+    <h3>Fórmulas importantes</h3>
+    <p>Raíces de una ecuación cuadrática:</p>
+    \[x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\]
+    <p>Coordenada \(x\) del vértice:</p>
+    \[x_v=\frac{-b}{2a}\]
+    <p>Discriminante:</p>
+    \[\Delta=b^2-4ac\]
+    <ul><li>Si \(\Delta>0\): dos raíces reales diferentes.</li><li>Si \(\Delta=0\): una raíz real doble.</li><li>Si \(\Delta<0\): no tiene raíces reales.</li></ul>
+    <div class="example"><div class="example-title">Ejemplo resuelto: encontrar las raíces</div>
+      <p>Encontrar las raíces de \(f(x)=x^2-5x+6\).</p>
+      <p><strong>Paso 1.</strong> Igualamos la función a cero:</p>
+      \[x^2-5x+6=0\]
+      <p><strong>Paso 2.</strong> Buscamos dos números cuyo producto sea 6 y cuya suma sea -5: son -2 y -3.</p>
+      <p><strong>Paso 3.</strong> Factorizamos:</p>
+      \[(x-2)(x-3)=0\]
+      <p><strong>Paso 4.</strong> Igualamos cada factor a cero:</p>
+      \[x-2=0\Rightarrow x=2\qquad x-3=0\Rightarrow x=3\]
+      <div class="formula"><span class="answer">Solución:</span> \(\boxed{x_1=2,\quad x_2=3}\)</div>
+      <p>Las raíces son los puntos donde la parábola corta el eje \(x\).</p>
+    </div>
+  </section>
+
+  <section class="lesson" id="exponencial">
+    <h2>6. Función exponencial</h2>
+    <p>Una función exponencial es aquella en la que la variable independiente aparece en el exponente.</p>
+    <div class="formula">\[\boxed{f(x)=a^x}\]</div>
+    <p>La base \(a\) debe ser positiva y diferente de 1.</p>
+    <h3>Características principales</h3>
+    <ul><li>Si \(a>1\), la función es creciente.</li><li>Si \(0<a<1\), la función es decreciente.</li><li>Su gráfica pasa por el punto \((0,1)\).</li><li>Sus valores son siempre positivos.</li><li>Se utiliza para representar crecimiento y decrecimiento.</li></ul>
+    <div class="example"><div class="example-title">Ejemplo resuelto</div>
+      <p>Dada la función \(f(x)=2^x\), calcular los valores para \(x=-2,-1,0,1,2,3\).</p>
+      \[\begin{aligned}f(-2)&=2^{-2}=\frac14\\f(-1)&=2^{-1}=\frac12\\f(0)&=2^0=1\\f(1)&=2^1=2\\f(2)&=2^2=4\\f(3)&=2^3=8\end{aligned}\]
+      <div class="table-wrap"><table><thead><tr><th>\(x\)</th><th>\(f(x)=2^x\)</th></tr></thead><tbody><tr><td>-2</td><td>0,25</td></tr><tr><td>-1</td><td>0,5</td></tr><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>2</td></tr><tr><td>2</td><td>4</td></tr><tr><td>3</td><td>8</td></tr></tbody></table></div>
+      <p class="answer">Conclusión: la función es creciente porque su base es mayor que 1.</p>
+    </div>
+  </section>
+
+  <section class="lesson" id="logaritmica">
+    <h2>7. Función logarítmica</h2>
+    <p>La función logarítmica es la operación inversa de la potenciación. Permite encontrar el exponente al que debemos elevar una base para obtener un número determinado.</p>
+    <div class="formula">\[\boxed{f(x)=\log_a(x)}\]</div>
+    <p>La base \(a\) es positiva y diferente de 1; el argumento \(x\) debe ser positivo.</p>
+    <h3>Relación entre potenciación y logaritmación</h3>
+    \[\boxed{\log_a(b)=c\iff a^c=b}\]
+    <h3>Propiedades de los logaritmos</h3>
+    <div class="table-wrap"><table><thead><tr><th>Propiedad</th><th>Expresión</th></tr></thead><tbody>
+      <tr><td>Producto</td><td>\(\log_a(MN)=\log_a M+\log_a N\)</td></tr>
+      <tr><td>Cociente</td><td>\(\log_a(M/N)=\log_a M-\log_a N\)</td></tr>
+      <tr><td>Potencia</td><td>\(\log_a(M^n)=n\log_a M\)</td></tr>
+      <tr><td>Logaritmo de 1</td><td>\(\log_a(1)=0\)</td></tr>
+      <tr><td>Logaritmo de la base</td><td>\(\log_a(a)=1\)</td></tr>
+    </tbody></table></div>
+    <div class="example"><div class="example-title">Ejemplo resuelto</div>
+      <p>Calcular \(\log_2(32)\).</p>
+      <p><strong>Paso 1.</strong> Escribimos la equivalencia:</p>
+      \[\log_2(32)=x\iff 2^x=32\]
+      <p><strong>Paso 2.</strong> Expresamos 32 como potencia de 2:</p>
+      \[2^x=2^5\]
+      <p><strong>Paso 3.</strong> Igualamos los exponentes:</p>
+      \[x=5\]
+      <div class="formula"><span class="answer">Respuesta:</span> \(\boxed{\log_2(32)=5}\)</div>
+    </div>
+    <div class="example"><div class="example-title">Ejemplo adicional: propiedad del producto</div>
+      \[\begin{aligned}\log_3(9)+\log_3(27)&=2+3\\&=\boxed{5}\end{aligned}\]
+      <p>Porque \(9=3^2\) y \(27=3^3\).</p>
+    </div>
+  </section>
+
+  <section class="lesson" id="poligonos">
+    <h2>8. Polígonos</h2>
+    <p>Un polígono es una figura geométrica plana y cerrada formada por segmentos de recta que se unen en sus extremos.</p>
+    <h3>Elementos de un polígono</h3>
+    <ul><li><strong>Lados:</strong> segmentos que forman el polígono.</li><li><strong>Vértices:</strong> puntos donde se unen dos lados.</li><li><strong>Ángulos interiores:</strong> ángulos que se encuentran dentro del polígono.</li><li><strong>Diagonales:</strong> segmentos que unen dos vértices no consecutivos.</li><li><strong>Perímetro:</strong> suma de las longitudes de todos sus lados.</li></ul>
+    <h3>Clasificación según el número de lados</h3>
+    <div class="table-wrap"><table><thead><tr><th>Polígono</th><th>Número de lados</th></tr></thead><tbody>
+      <tr><td>Triángulo</td><td>3</td></tr><tr><td>Cuadrilátero</td><td>4</td></tr><tr><td>Pentágono</td><td>5</td></tr><tr><td>Hexágono</td><td>6</td></tr><tr><td>Heptágono</td><td>7</td></tr><tr><td>Octágono</td><td>8</td></tr><tr><td>Eneágono</td><td>9</td></tr><tr><td>Decágono</td><td>10</td></tr>
+    </tbody></table></div>
+    <h3>Polígonos regulares e irregulares</h3>
+    <ul><li><strong>Regular:</strong> tiene todos sus lados y ángulos interiores iguales.</li><li><strong>Irregular:</strong> tiene lados o ángulos interiores de diferentes medidas.</li></ul>
+    <h3>Fórmulas importantes</h3>
+    <p><strong>1. Suma de los ángulos interiores:</strong></p>
+    \[S=(n-2)\cdot180^\circ\]
+    <p><strong>2. Medida de cada ángulo interior de un polígono regular:</strong></p>
+    \[A=\frac{(n-2)\cdot180^\circ}{n}\]
+    <p><strong>3. Número de diagonales:</strong></p>
+    \[D=\frac{n(n-3)}{2}\]
+    <p><strong>4. Perímetro de un polígono regular:</strong></p>
+    \[P=n\cdot l\]
+    <p>Donde \(n\) es el número de lados y \(l\) es la longitud de cada lado.</p>
+    <div class="example"><div class="example-title">Ejemplo resuelto: hexágono regular</div>
+      <p>Calcular la suma de los ángulos interiores, la medida de cada ángulo interior y el número de diagonales de un hexágono regular.</p>
+      <p><strong>Paso 1.</strong> Identificamos el número de lados: \(n=6\).</p>
+      <p><strong>Paso 2.</strong> Suma de ángulos interiores:</p>
+      \[S=(6-2)\cdot180^\circ=4\cdot180^\circ=\boxed{720^\circ}\]
+      <p><strong>Paso 3.</strong> Cada ángulo interior:</p>
+      \[A=\frac{720^\circ}{6}=\boxed{120^\circ}\]
+      <p><strong>Paso 4.</strong> Número de diagonales:</p>
+      \[D=\frac{6(6-3)}{2}=\frac{18}{2}=\boxed{9}\]
+      <p class="answer">Conclusión: un hexágono regular tiene 6 lados, 6 ángulos interiores de 120° cada uno y 9 diagonales.</p>
+    </div>
+  </section>
+
+  <section class="practice" id="practica">
+    <div class="eyebrow">Pon a prueba lo aprendido</div>
+    <h2>9. Actividades de práctica</h2>
+    <p>Resuelve los siguientes cinco ejercicios. Justifica tus procedimientos y escribe claramente las respuestas.</p>
+    <div class="exercise">
+      <h3>Ejercicio 1. Álgebra y factorización</h3>
+      <p>Factoriza las siguientes expresiones, identificando el caso correspondiente:</p>
+      <ol type="a"><li>\(6x^2+12x\)</li><li>\(x^2-49\)</li><li>\(x^2+7x+12\)</li><li>\(x^2-10x+25\)</li><li>\(8x^3-27\)</li></ol>
+    </div>
+    <div class="exercise">
+      <h3>Ejercicio 2. Sistemas y números complejos</h3>
+      <p><strong>Parte A.</strong> Resuelve por el método de reducción:</p>
+      <div class="mathline">\[\begin{cases}2x+y=11\\x-y=1\end{cases}\]</div>
+      <p><strong>Parte B.</strong> Sean \(z_1=4+3i\) y \(z_2=2-5i\). Calcula:</p>
+      <ol type="a"><li>\(z_1+z_2\)</li><li>\(z_1-z_2\)</li><li>\(z_1\cdot z_2\)</li><li>\(i^{15}\)</li></ol>
+    </div>
+    <div class="exercise">
+      <h3>Ejercicio 3. Funciones lineal y cuadrática</h3>
+      <p><strong>Parte A. Función lineal.</strong> Dada \(f(x)=3x-2\):</p>
+      <ol type="a"><li>Construye una tabla de valores para \(x=-2,-1,0,1,2\).</li><li>Identifica la pendiente y el punto de corte con el eje \(y\).</li><li>Determina si es creciente o decreciente.</li></ol>
+      <p><strong>Parte B. Función cuadrática.</strong> Dada \(f(x)=x^2-7x+12\):</p>
+      <ol type="a"><li>Factoriza la expresión.</li><li>Encuentra las raíces.</li><li>Calcula las coordenadas del vértice.</li><li>Indica si la parábola abre hacia arriba o hacia abajo.</li></ol>
+    </div>
+    <div class="exercise">
+      <h3>Ejercicio 4. Funciones exponencial y logarítmica</h3>
+      <p><strong>Parte A. Función exponencial.</strong> Dada \(f(x)=3^x\):</p>
+      <ol type="a"><li>Calcula \(f(-1),f(0),f(1),f(2)\).</li><li>Construye una tabla de valores.</li><li>Explica por qué es una función creciente.</li></ol>
+      <p><strong>Parte B. Función logarítmica.</strong> Resuelve:</p>
+      <ol type="a"><li>\(\log_2(64)\)</li><li>\(\log_3(81)\)</li><li>\(\log_5(125)\)</li><li>\(\log_4(16)+\log_2(8)\)</li></ol>
+    </div>
+    <div class="exercise">
+      <h3>Ejercicio 5. Geometría: polígonos</h3>
+      <p>Un arquitecto está diseñando una estructura con forma de octágono regular. Cada lado mide 5 cm. Responde:</p>
+      <ol type="a"><li>¿Cuántos lados y vértices tiene el polígono?</li><li>Calcula su perímetro.</li><li>Calcula la suma de sus ángulos interiores.</li><li>¿Cuánto mide cada ángulo interior?</li><li>¿Cuántas diagonales tiene?</li><li>Explica la diferencia entre un polígono regular y uno irregular.</li></ol>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:25px">
+    <h2>10. Antes de presentar la evaluación</h2>
+    <p>Marca cada recomendación cuando la hayas tenido en cuenta durante tu repaso:</p>
+    <div class="checklist">
+      <label><input type="checkbox"> Identifico el concepto matemático antes de resolver.</label>
+      <label><input type="checkbox"> Escribo las fórmulas y sustituyo correctamente los valores.</label>
+      <label><input type="checkbox"> Respeto las reglas de los signos.</label>
+      <label><input type="checkbox"> Verifico mis resultados cuando es posible.</label>
+      <label><input type="checkbox"> Interpreto tablas, expresiones y gráficas.</label>
+      <label><input type="checkbox"> Identifico los datos y las fórmulas en geometría.</label>
+    </div>
+    <div class="note"><strong>Recuerda:</strong> el éxito en matemáticas no depende solamente de recordar fórmulas, sino de comprender cómo y cuándo utilizarlas. ¡Cada ejercicio es una oportunidad para aprender!</div>
+    <button class="btn btn-gold" onclick="window.print()" type="button">Imprimir o guardar como PDF</button>
+  </section>
+</main>
+
+<footer>
+  <strong>REPASEMOS MATEMÁTICAS</strong>
+  <p>Grados octavo y noveno · Guía de preparación para la evaluación final</p>
+  <p>Aprender, practicar y avanzar.</p>
+  <a class="backtop" href="#inicio">↑ Volver al inicio</a>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navlinks = document.getElementById('navlinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+</body>
+</html>
